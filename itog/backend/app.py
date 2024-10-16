@@ -5,11 +5,11 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route("/", methods=['GET', 'POST'])
-def hello():
+def order():
     if request.method == 'POST':
         data = request.get_json()
         print(data)
-        return jsonify({"message": "Покупка получена", "data": data}), 200
+        return jsonify({"message": "Заказ получена", "data": data}), 200
 
 if __name__ == "__main__":
     app.run(port=8000)
