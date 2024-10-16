@@ -9,7 +9,7 @@ def order():
     if request.method == 'POST':
         data = request.get_json()
         print(data)
-        return jsonify({"message": "Заказ получена", "data": data}), 200
+        return jsonify({"message": "Заказ получен", "data": data}), 200
 
 if __name__ == "__main__":
     app.run(port=8000)
