@@ -5,9 +5,16 @@ let zakaz = {
     "product": "Суп"
 };
 
+let res = ''
+
 pokupka.onclick = function() {
     console.log("заказ ушел");
     axios.post(url, zakaz)
-        .then(response => console.log(response.data))
-        .catch(error => console.log(error));
+        .then(response => {
+            console.log(response.data)
+            alert(response.data.message)
+            res = response.data.data.product
+            alert(`${res} скоро будет готов`)
+        })
+        .catch(error => console.log(error))
 };
