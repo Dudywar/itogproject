@@ -19,12 +19,10 @@ def order():
     if request.method == 'POST':
         data = request.get_json()
         ref.set({
-            "id":
-                {
-                    "product": data.product,
+            data["id"]: {
+                "product": data["product"]
                 }
-        })
-        print(data)
+                })
         return jsonify({"message": "Заказ получен", "data": data}), 200
 
 if __name__ == "__main__":

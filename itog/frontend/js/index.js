@@ -6,8 +6,6 @@ let zakaz = {
     "product": "Суп"
 };
 
-let res = ''
-
 pokupka.onclick = function() {
     console.log("заказ ушел");
     axios.post(url, zakaz)
