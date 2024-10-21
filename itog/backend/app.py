@@ -1,7 +1,12 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from flask_socketio import SocketIO, emit
 import firebase_admin
 from firebase_admin import credentials, db
+
+app = Flask(__name__)
+CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 databaseURL = 'https://zakazedi-3c538-default-rtdb.europe-west1.firebasedatabase.app/'
 
@@ -11,19 +16,18 @@ firebase_admin.initialize_app(cred, {
 })
 ref = db.reference("/")
 
-app = Flask(__name__)
-CORS(app)
-
 @app.route("/", methods=['GET', 'POST'])
 def order():
     if request.method == 'POST':
         data = request.get_json()
-        ref.set({
-            data["id"]: {
-                "product": data["product"]
-                }
-                })
+        ref.child(f'id: {data["id"]}').set({"product": data["product"]})
+        socketio.emit("new_order", {"id": data["id"], "product": data["product"]})
+        print(f"Emitted new_order: id={data['id']}, product={data['product']}")
         return jsonify({"message": "Заказ получен", "data": data}), 200
 
+@socketio.on('connect')
+def handle_connect():
+    print('Client connected')
+
 if __name__ == "__main__":
-    app.run(port=8000)
+    socketio.run(app, port=8000)
