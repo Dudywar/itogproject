@@ -9,21 +9,6 @@
 <body>
     <h1>Orders</h1>
     <div id="order"></div>
-
-    <script>
-        const socket = io('http://127.0.0.1:8000/'); // Подключение к WebSocket серверу
-
-        // Обработка события нового заказа
-        socket.on('new_order', function(data) {
-            let orderlist = document.getElementById("order");
-
-            // Создание нового элемента заказа
-            let order = document.createElement("p"); // Исправлено: просто "p", без <>
-            order.textContent = `Номер заказа: ${data.id}, Заказ: ${data.product}`;
-
-            // Добавление заказа в список
-            orderlist.appendChild(order);
-        });
-    </script>
+    <script src="js/index.js"></script>
 </body>
 </html>
