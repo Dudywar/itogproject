@@ -16,14 +16,20 @@ firebase_admin.initialize_app(cred, {
 })
 ref = db.reference("/")
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/", methods=['POST'])
 def order():
     if request.method == 'POST':
         data = request.get_json()
         ref.child(f'id: {data["id"]}').set({"product": data["product"]})
         socketio.emit("new_order", {"id": data["id"], "product": data["product"]})
-        print(f"Emitted new_order: id={data['id']}, product={data['product']}")
         return jsonify({"message": "Заказ получен", "data": data}), 200
+
+@app.route("/complete_order", methods=['POST'])
+def complete_order():
+    zak = request.get_json()
+    ref.child(f'id: {zak["id"]}').delete()
+    socketio.emit('order_completed', {'order_id': zak["id"]})
+    return jsonify({'message': 'Заказ завершен!'})
 
 @socketio.on('connect')
 def handle_connect():
