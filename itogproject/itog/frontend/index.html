@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <title>Заказ еды</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+        }
+        button {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="container" id="status"></div>
+        <h2>Сделать заказ</h2>
+        <button id="pokupka">Заказать</button>    
+    </div>
+    <script src="js/index.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+</html>
