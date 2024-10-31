@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <title>Заказ еды</title>
     <style>
         body {
             display: flex;
@@ -19,8 +20,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Сделать заказ</h1>
-        <button id="pokupka">Покупка1</button>    
+        <div class="container" id="status"></div>
+        <h2>Сделать заказ</h2>
+        <button id="pokupka">Заказать</button>    
     </div>
     <script src="js/index.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
