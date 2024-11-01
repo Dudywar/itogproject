@@ -10,7 +10,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 databaseURL = 'https://zakazedi-3c538-default-rtdb.europe-west1.firebasedatabase.app/'
 
-cred = credentials.Certificate("zakazedi-3c538-firebase-adminsdk-xe6q5-dc1e53ee64.json")
+cred = credentials.Certificate("zakazedi-3c538-firebase-adminsdk-xe6q5-8c1cc010a3.json")
 firebase_admin.initialize_app(cred, {
     'databaseURL': databaseURL
 })
