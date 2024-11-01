@@ -18,11 +18,10 @@ ref = db.reference("/")
 
 @app.route("/", methods=['POST'])
 def order():
-    if request.method == 'POST':
-        data = request.get_json()
-        ref.child(f'id: {data["id"]}').set({"product": data["product"]})
-        socketio.emit("new_order", {"id": data["id"], "product": data["product"]})
-        return jsonify({"message": "Заказ получен", "data": data}), 200
+    data = request.get_json()
+    ref.child(f'id: {data["id"]}').set({"product": data["product"]})
+    socketio.emit("new_order", {"id": data["id"], "product": data["product"]})
+    return jsonify({"message": "Заказ получен", "data": data}), 200
 
 @app.route("/complete_order", methods=['POST'])
 def complete_order():

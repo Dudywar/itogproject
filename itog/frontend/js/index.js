@@ -22,8 +22,6 @@ pokupka.onclick = function() {
     axios.post(url, zakaz)
         .then(response => {
             console.log(response.data);
-            //let res = response.data.data.product;
-            // alert(`${res} скоро будет готов`);
         })
         .catch(error => console.log(error));
 };
