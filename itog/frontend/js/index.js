@@ -24,4 +24,4 @@ pokupka.onclick = function() {
             console.log(response.data);
         })
         .catch(error => console.log(error));
-};
+}; 
